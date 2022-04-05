@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Baloo+Bhaijaan+2:wght@600&family=Roboto+Condensed:wght@700&family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Baloo+Bhaijaan+2:wght@600&family=Raleway:wght@300&family=Roboto+Condensed:wght@700&family=Roboto:wght@900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+header{
+    width: 100%;
+    height: 150px;
+    background-color: #9FA8B0;
+    color: black;
+}
+
+.titulo{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.cms{
+    font-size: 35px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #D7DDE2;
+    padding-left: 100px;
+
+}
+.loja{
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    padding-left: 30px;
+ 
+  
+}
+.gerenciamento{
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    padding-left: 100px;
+
+}
+
+.div{
+    width: 100%;
+    height: 100px;
+    background-color: #E1E3E4;
+    padding-left: 10px;
+}
+
+.adm{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 70px;
+    padding-top: 10px;
+    
+}
+
+.produtos{
+    padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+}
+
+#imagem-produto{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 25px;
+}
+.categorias{
+    padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+}
+#imagem-categoria{
+    width: 60px;
+    height: 60px;
+    margin-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.contatos{
+    padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+}
+#imagem-contato{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.usuarios{
+    padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+}
+#imagem-usuario{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.sessao{
+    width: 100%;
+    height: 597px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+.copyright{
+    padding-left: 800px;
+    padding-top: 20px;
+}
+.versao{
+    padding-left: 870px;
+}
+
+footer{
+    width: 100%;
+    height: 90px;
+    background-color: #626A6E;
+}
+
+
+#consultaDeDados{
+    width: 1000px;
+    min-height: 300px;
+    height: auto;
+    border: solid 1px black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    margin-bottom: 10px;
+    box-shadow: 10px 10px 10px #cccccc;
+}
+#tblConsulta{
+    width: 100%;
+    min-height: 30px;
+    height: auto;
+}
+#tblTitulo{
+    width: 100%;
+    height: 30px;
+    background-color:#9FA8B0;
+    color: white;
+    text-align: center;
+    font-size: 1.6em;
+}
+#tblLinhas{
+    width: 100%;
+    height: 50px;
+    border: solid 1px black;
+}
+.tblColunas{
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background-color:  #D7DDE2;
+    border: solid 1px black;
+}
+.tblImagens{
+    width: auto;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    
+/*    padding: 10px;*/
+/*    box-sizing: border-box;*/
+}
+.excluir{
+    width: 30px;
+    height: 30px;
+/*    background-color: black;*/
+    float: left;
+    margin-left: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.excluir:hover{
+    transform: scale(1.3);
+    transition: 1s;
+}

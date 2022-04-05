@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Baloo+Bhaijaan+2:wght@600&family=Raleway:wght@300&family=Roboto+Condensed:wght@700&family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Baloo+Bhaijaan+2:wght@600&family=Roboto+Condensed:wght@700&family=Roboto:wght@900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+form{
+    width: 800px;
+    height: 400px;
+    margin-left: 600px;
+    margin-top: 150px;
+    box-sizing: border-box;
+    border: 3px solid  #9FA8B0;
+}
+.Autentificacao{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 40px;
+    padding-left: 200px;
+    padding-top: 20px;
+    color: #D7DDE2;
+
+}
+.projeto{
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    padding-left: 300px;
+
+}
+.login{
+    padding-left: 20px;
+    font-size: 25px;
+    padding-top: 35px;
+    font-family: 'Raleway', sans-serif;
+
+}
+.senha{
+    padding-left: 20px;
+    font-size: 25px;
+    padding-top: 25px;
+    font-family: 'Raleway', sans-serif;
+}
+input{
+    width: 250px;
+    height: 30px;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+}
+button{
+    width: 150px;
+    height: 60px;
+    margin-top: 80px;
+    margin-left: 600px;
+    font-size: 35px;
+    font-family: 'Raleway', sans-serif;
+    background-color:#D7DDE2;
+}

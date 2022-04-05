@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Baloo+Bhaijaan+2:wght@600&family=Roboto+Condensed:wght@700&family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Baloo+Bhaijaan+2:wght@600&family=Raleway:wght@300&family=Roboto+Condensed:wght@700&family=Roboto:wght@900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+header{
+    width: 100%;
+    height: 150px;
+    background-color: #9FA8B0;
+    color: black;
+}
+
+.titulo{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 40px;
+}
+
+.cms{
+    font-size: 35px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #D7DDE2;
+    padding-left: 100px;
+
+}
+.loja{
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    padding-left: 30px;
+ 
+  
+}
+.gerenciamento{
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    padding-left: 100px;
+
+}
+
+.div{
+    width: 100%;
+    height: 100px;
+    background-color: #E1E3E4;
+    padding-left: 10px;
+}
+
+.adm{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 70px;
+    padding-top: 10px;
+    
+}
+
+.produtos{
+    padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+}
+
+#imagem-produto{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 25px;
+}
+.categorias{
+    padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+}
+#imagem-categoria{
+    width: 60px;
+    height: 60px;
+    margin-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.contatos{
+    padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+}
+#imagem-contato{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.usuarios{
+    padding-right: 30px;
+    font-family: 'Raleway', sans-serif;
+}
+#imagem-usuario{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.sessao{
+    width: 100%;
+    height: 597px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+.copyright{
+    padding-left: 800px;
+    padding-top: 20px;
+}
+.versao{
+    padding-left: 870px;
+}
+
+footer{
+    width: 100%;
+    height: 90px;
+    background-color: #626A6E;
+}
