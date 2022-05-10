@@ -30,20 +30,48 @@
                 "id"        => $rsDados['idcontato'],
                 "nome"      => $rsDados['nome'],
                 "telefone"  => $rsDados['telefone'],
-                "email"     => $rsDados['email'],
+                "email"     => $rsDados['email']
             );
             $cont++;
         }
         //Solicita o fechamento da conexao com o BD
         fecharMysql($conexao);
 
-        return $arrayDados;
+        if(isset($arrayDados))
+            return $arrayDados;
+        else
+            return false;
     }
 
     
  }
+ function deleteContato($id){
 
-     var_dump(selectAllContato());
+    $verificacao = (boolean) false;
+        
+    $conexao = conexaoMysql();
+    
+    //deletar cadastro no banco de dados
+    $sql = "delete from tblcontato where idcontato =".$id;
+    
+
+    //verifica se o script está certo no banco de dados
+    if(mysqli_query($conexao, $sql)){
+
+        if(mysqli_affected_rows(($conexao))){
+            $verificacao = true;
+        }
+        
+        
+    }
+    fecharMysql($conexao);
+    return $verificacao;
+    
+}
+
+
+ 
+    
 
 
 
