@@ -19,7 +19,9 @@
 
         switch($componente){
 
-            case 'CATEGORIAS':
+
+
+        case 'CATEGORIAS':
 
             require_once('./controller/controllerCategorias.php');
 
@@ -90,27 +92,116 @@
                     if($action == 'DELETAR'){
 
                         $idProdutos = $_GET['id'];
-                        $resposta = excluirProdutos($idProdutos);
-
+                        $foto = $_GET['foto'];
+            
+                        //Criamos um array para encaminhar os valores do id e da foto para a controller
+                        $arrayDados = array(
+                           "id"    => $idProdutos,
+                           "foto"  => $foto
+                        );
+            
+                        $resposta = excluirProdutos($arrayDados);
+            
                             if(is_bool($resposta)){
+            
+                          
+                                if(is_bool($resposta)){
+                                    echo("<script>
+                                        alert('Registro excluido com sucesso!');
+                                        window.location.href='contatos.php';
+                                        </script>");
+                                
+                                }elseif(is_array($resposta)){
+                                    echo("<script>
+                                        alert('".$resposta['message']."');
+                                        window.history.back();
+                                        </script>");
+                    
+                    
+                                }
+                                
+                    
+                        }
 
-                                if($resposta)
-                                    echo("<script> alert('Registro excluído com sucesso!');
-                                    window.location.href='contatos.php';
-                                    </script>"
-                                    );
+                    }elseif($action == 'INSERIR'){
 
-                            }elseif(is_array($resposta))
-                                echo("<script> alert ('".$resposta['message']."')
-                                window.history.back;
-                                </script>");
-
-                    }
-
-                 
+                        if(isset($_FILES) && !empty($_FILES)){
+                            //chama a função de inserir na controller
+                            $resposta = inserirProdutos($_POST, $_FILES);
+                         }else{
+                            $resposta = insertProdutos($_POST, null);
+                         }
        
+                        //Valida o tipo de dados que a controller retornou
+                        if(is_bool($resposta)){ //se for bolleano
+       
+                           //Verificar se o retorno foi verdadeiro
+                           if($resposta)
+                           echo("<script>
+                           alert('Registro inserido com sucesso');
+                           window.location.href = 'contatos.php';
+                               </script>");
+                        
+                         //Se o retorno foi array significa que houve um erro no processo de inserção
+                       }elseif(is_array($resposta))
+                        echo("<script>
+                           alert('".$resposta['message']."');
+                           window.history.back();
+                            </script>");
 
-     }
+
+                    }elseif($action == 'EDITAR'){
+                          //recebe o id do registro que deverá ser excluído, que foi enviado pela url
+                            //no link da imagem do excluir que foi acionado na index
+                            $idProdutos = $_GET['id'];
+
+                            //chama a função editar na controller
+                            $dados = editarProdutos($idProdutos);
+
+                            //ativa a utilização de variáveis de sessão no servidor
+                            session_start();
+
+
+                            $_SESSION['dadosContato'] = $dados;
+
+                            require_once('contatos.php');
+
+                    }elseif($action == 'ATUALIZAR'){
+                        //recebe 
+                        $idProdutos = $_GET['id'];
+                        //recebe o nome da foto que foi enviada pelo get do form
+                        $foto = $_GET['foto'];
+            
+                        //cria um array contendo o id e o nome da foto para enviar a controller
+                        $arrayDados = array(
+                            "id"   => $idProdutos,
+                            "foto" => $foto,
+                            "file" =>$_FILES
+                        );
+                        
+                        //chama a funcao de editar na controller
+                        $resposta = atualizarProdutos($_POST, $arrayDados);
+                        //valida o tipo de dados que a controller retornou
+                        if(is_bool($resposta))//se for booleano
+                        { 
+                            
+                            //verifica se o retorno foi verdadeiro
+                            if($resposta)
+                                echo("<script>
+                                alert('Registro inserido com sucesso!');
+                                window.location.href = 'contatos.php';
+                                </script>");
+                        //se o retorno for um array significa erro no processo de inserção
+                        }elseif(is_array($resposta)){
+                            echo("<script>
+                            alert('".$resposta['message']."');
+                            window.history.back();
+                            </script>");
+                            }
+                    }
+                    break;
+
+    }
 
 }
 ?>

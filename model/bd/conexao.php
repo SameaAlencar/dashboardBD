@@ -22,10 +22,10 @@
         return false;
     }
 
- }
+    }
 
- function fecharMySql($conexao){
-     mysqli_close($conexao);
+    function fecharMySql($conexao){
+        mysqli_close($conexao);
 
  }
 

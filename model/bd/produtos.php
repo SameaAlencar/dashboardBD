@@ -8,7 +8,48 @@
 
 require_once('conexao.php');
 
-    function sellectAllProdutos(){
+function insertProdutos($dadosProdutos){
+
+     //declaraçãode variável para utilizar
+     $statusResposta = (boolean) false;
+
+     $conexao = conexaoMysql();
+ 
+   //Monta o script para enviar para o BD
+     $sql = "insert into tblproduto
+                 (desconto,
+                 percentualValor,
+                 foto)
+          values
+                ('".$dadosProdutos['desconto']."',
+                 '".$dadosProdutos['percentualValor']."',
+                 '".$dadosProdutos['foto']."')";
+                
+ 
+    //executa o script no BD
+ 
+         
+ 
+         // Validação para verificar se o script sql esta correto
+         if (mysqli_query($conexao, $sql)){
+ 
+             //Validação para verificar se uma linha foi acrescentada no BD
+             if(mysqli_affected_rows($conexao))
+               $statusResposta = true;
+             else
+               $statusResposta = false;
+         }
+         else{
+             $statusResposta = false;
+         }
+ 
+         //solicita o fechamento da conexao com o banco de dados
+         fecharMySql($conexao);
+         return $statusResposta;
+}
+
+
+function sellectAllProdutos(){
 
     $conexao = conexaoMySql();
 
@@ -58,6 +99,77 @@ function deleteProdutos($id){
         return $verificacao;
 
 
+}
+
+function updateProdutos($dadosProdutos){
+    $statusResposta = (boolean) false;
+    //abre a conexao com o banco
+        $conexao = conexaoMysql();
+
+        $sql = "update tblproduto set
+        desconto          = '".$dadosProdutos['desconto']."',
+        percentualValor   = '".$dadosProdutos['percentualValor']."',
+        foto              = '".$dadosProdutos['foto']."'
+       
+         where idproduto = ".$dadosProdutos['id'];
+  
+        
+         //executa o script no bd
+         //validacao para identificar se o script esta certo
+        if(mysqli_query($conexao,$sql)){
+           //validacao para verificae se uma linha foi acrescentada no DB
+           
+            if(mysqli_affected_rows($conexao))
+            {
+             $statusResposta = "true";
+        
+            }
+        
+        }
+
+       
+        // solicita o fechamento 
+        fecharMySql($conexao);
+        return $statusResposta;
+}
+
+function selectByIdProdutos($id){
+
+    //Abre conexão com  BD
+    $conexao = conexaoMysql();
+
+    //script para listar todos os dados do BD
+    $sql ="select * from tblproduto where idproduto = ".$id;
+
+    //Executa o script sql no BD e guarda o retorno dos dados, se houver
+    $result = mysqli_query($conexao, $sql);
+
+    //Valida se o BD retornou registros
+    if($result)
+    {
+        //mysqli_fetch_assoc() - permite converter os dados para o BD em um array para manipulação do PHP
+        //Nesta repetição estamos convertendo os dados do BD em um array ($rsDados), além de
+        //o próprio while conseguir gerenciar a quantidade de vezes que deverá ser feita a reperição
+        
+        if($rsDados = mysqli_fetch_assoc($result)){
+            
+            //Cria um array com os dados do BD
+            $arrayDados = array(
+                "id"                  => $rsDados['idproduto'],
+                "desconto"            => $rsDados['desconto'],
+                "percentualDesconto"  => $rsDados['percentualValor'],
+                "foto"                => $rsDados['foto']
+            );
+          
+        }
+        //Solicita o fechamento da conexao com o BD
+        fecharMysql($conexao);
+
+        if(isset($arrayDados))
+            return $arrayDados;
+        else        
+            return false;
+    }
 }
 
 

@@ -1,3 +1,32 @@
+<?php
+
+    require_once('modulo/config.php');
+
+    $form = (string) "router.php?componente=produtos&action=inserir";
+    //variável para carregar o nome da foto do banco de dados
+    $foto = (string) null;
+    $idestado = (string) null;
+
+      
+    //valida se a utilização de variavel de sessao esta ativa no servidor 
+    if(session_status()){
+
+        //valida se a variavel de sessão dadosContato não está vazia
+        if(!empty($_SESSION['dadosProdutos'])){
+
+            $id              = $_SESSION['dadosProdutos']['id'];
+            $desconto        = $_SESSION['dadosProdutos']['desconto'];
+            $percentualValor = $_SESSION['dadosProdutos']['percentualValor'];
+            $foto            = $_SESSION['dadosProdutos']['foto'];
+
+            $form = "router.php?componente=produtos&action=atualizar&id=".$id."&foto=".$foto;
+            unset($_SESSION['dadosProdutos']);
+           
+         }
+ }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,13 +127,13 @@
                 
             </div>
             <div id="cadastroInformacoes">
-                <form  action="router.php?componente=contatos&action=inserir" name="frmCadastro" method="post" >
+                <form  action="router.php?componente=contatos&action=inserir" name="frmCadastro" method="post" enctype="multipart/form-data" >
                     <div class="campos">
                         <div class="cadastroInformacoesPessoais">
                             <label> Categoria: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="text" name="txtNome" value="<?=isset($categoria)?$categoria:null?>" placeholder="Digite uma categoria" maxlength="100">
+                            <input type="text" name="txtCategoria" value="<?=isset($categoria)?$categoria:null?>" placeholder="Digite uma categoria" maxlength="100">
                         </div>
                     </div>
                                 
@@ -181,7 +210,7 @@
                             <label> E-mail: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="tel" name="txtTelefone" value="<?=isset($email)?$email:null?>" placeholder="Digite seu email" maxlength="100">
+                            <input type="tel" name="txtEmail" value="<?=isset($email)?$email:null?>" placeholder="Digite seu email" maxlength="100">
                         </div>
                     </div>
                     <div class="campos">
@@ -189,7 +218,7 @@
                             <label> Senha: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="tel" name="txtTelefone" value="<?=isset($senha)?$senha:null?>" placeholder="Digite sua senha" maxlength="100">
+                            <input type="tel" name="txtSenha" value="<?=isset($senha)?$senha:null?>" placeholder="Digite sua senha" maxlength="100">
                         </div>
                     </div>
                     
@@ -256,13 +285,13 @@
                 
             </div>
             <div id="cadastroInformacoes">
-                <form  action="router.php?componente=contatos&action=inserir" name="frmCadastro" method="post" >
+                <form  action="<?=$form?>" name="frmCadastro" method="post" enctype="multipart/form-data" >
                     <div class="campos">
                         <div class="cadastroInformacoesPessoais">
                             <label> Desconto: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="text" name="txtNome" value="<?=isset($desconto)?$desconto:null?>" placeholder="Digite seu nome" maxlength="100">
+                            <input type="text" name="txtDesconto" value="<?=isset($desconto)?$desconto:null?>" placeholder="Digite seu nome" maxlength="100">
                         </div>
                     </div>
                     <div class="campos">
@@ -270,7 +299,15 @@
                             <label> Percentual de valor: </label>
                         </div>
                         <div class="cadastroEntradaDeDados">
-                            <input type="tel" name="txtTelefone" value="<?=isset($percentualValor)?$percentualValor:null?>" placeholder="Digite seu email" maxlength="100">
+                            <input type="tel" name="txtPercentualValor" value="<?=isset($percentualValor)?$percentualValor:null?>" placeholder="Digite seu email" maxlength="100">
+                        </div>
+                    </div>
+                    <div class="campos">
+                        <div class="cadastroInformacoesPessoais">
+                            <label> Escolha um arquivo: </label>
+                        </div>
+                        <div class="cadastroEntradaDeDados">
+                            <input type="file" name="fleFoto" accept=".jpg, .png, .jpeg, .gif">
                         </div>
                     </div>
                     
@@ -291,7 +328,7 @@
                         </td>
                     </tr>
                     <tr id="tblLinhas">
-                        <td class="tblColunas destaque"> Desconto </td>
+                        <td class="tblColunas destaque"> Destaques </td>
                         <td class="tblColunas destaque"> Percentual de valor </td>
                         <td class="tblColunas destaque"> Foto </td>
                         <td class="tblColunas destaque"> Opções </td>
@@ -309,13 +346,17 @@
                     
                     <tr id="tblLinhas">
                         <td class="tblColunas registros"><?=$unidade['desconto']?></td>
-                        <td class="tblColunas registros"><?=$unidade['percentual de desconto']?></td>
-                        <td class="tblColunas registros"><?=$unidade['foto']?></td>
+                        <td class="tblColunas registros"><?=$unidade['percentualValor']?></td>
+                        <td class="tblColunas registros"><img src="<?=DIRETORIO_FILE_UPLOAD.$foto?>" class="foto" alt=""></td>
                     
                         <td class="tblColunas registros">
+
+                        <a href="router.php?componente=produtos&action=editar&id=<?=$unidade['id']?>">
+                            <img src="img/edit.png" alt="Editar" title="Editar" class="editar">
+                        </a>
                                 
                         <a onclick="return confirm('Tem certeza que deseja excluir?');"
-                                         href="router.php?componente=produtos&action=deletar&id=<?=$unidade['id']?>">
+                                         href="router.php?componente=produtos&action=deletar&id=<?=$unidade['id']?>&foto=<?=$foto?>">
                             <img src="img/trash.png" alt="Excluir" title="Excluir" class="excluir">
                         </a>
                                 

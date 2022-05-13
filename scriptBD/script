@@ -1,0 +1,55 @@
+create database dbcontato;
+
+use dbcontato;
+
+create table tblcontato(
+	idcontato int not null auto_increment primary key,
+    nome varchar(80) not null,
+    email varchar (100) not null,
+    telefone varchar (18) not null
+);
+select * from tblcontato;
+
+insert into tblcontato (nome, email, telefone)values('sam', 'sam@gmail.com', '4141-8409');
+
+create table tblcategoria(
+	idcategoria int not null auto_increment primary key,
+    categoria varchar (20) not null
+);
+
+select * from tblcategoria;
+insert into tblcategoria (categoria) values('blusa');
+
+create table tblusuario(
+	idusuario int not null auto_increment primary key,
+    nome varchar (40) not null,
+    email varchar (100) not null,
+    senha varchar (25) not null
+
+);
+desc tblproduto;
+show tables;
+
+select * from tblusuario;
+insert into tblusuario (nome, email, senha) values('s', 'sam@gmail.com', '*********');
+
+create table tblproduto(
+	idproduto int not null auto_increment primary key,
+    desconto boolean not null,
+    percentualValor boolean not null,
+    foto varchar(50) not null
+    
+);
+
+select * from tblproduto;
+insert into tblproduto(desconto, percentualValor, foto) values ('52', '32', '34');
+
+
+select * from tblcategoria order by idcategoria desc;
+delete from tblcategoria where idcategoria =2;
+
+
+
+
+
+show databases;
